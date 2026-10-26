@@ -1,0 +1,36 @@
+name: Test and build APK
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Unit and lesson tests
+        run: npm test
+
+      - name: Install Android build tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq aapt apksigner zipalign dalvik-exchange zip
+          sudo mkdir -p /opt/android-platform
+          sudo curl -sSfo /opt/android-platform/android-34.jar \
+            https://raw.githubusercontent.com/Sable/android-platforms/master/android-34/android.jar
+
+      - name: Build APK (signed with a throwaway key; for testing only)
+        run: KEYSTORE_PASS="$(openssl rand -hex 16)" ./scripts/build-apk.sh
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: SkillBoost-apk
+          path: dist/SkillBoost.apk

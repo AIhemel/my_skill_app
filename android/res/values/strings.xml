@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SkillBoost</string>
+    <string name="channel_name">Daily study reminder</string>
+    <string name="channel_desc">A gentle nudge to keep your streak alive</string>
+</resources>
