@@ -1,0 +1,11 @@
+{
+  "name": "skillboost",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Offline Android study app: GRE/IELTS vocabulary and verbal practice, embedded C course with an on-device C simulator, and a calm corner.",
+  "scripts": {
+    "test": "node tests/minic.test.js && node tests/lessons.test.js",
+    "test:e2e": "node tests/e2e.js",
+    "build:apk": "./scripts/build-apk.sh"
+  }
+}

@@ -1,0 +1,7 @@
+build/
+node_modules/
+*.idsig
+test-results/
+# Signing keys are private: never commit them.
+*.keystore
+*.jks
